@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoptheflop/menu.dart';
+import 'package:shoptheflop/screens/menu.dart';
 
 void main() {
   runApp(const MyApp());
