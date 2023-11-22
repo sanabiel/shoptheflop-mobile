@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/left_drawer.dart';
 import '../widgets/item_card.dart';
-import '../model/item.dart';
+import '../model/item1.dart';
 
 class ShopListPage extends StatelessWidget {
   const ShopListPage({super.key});
@@ -9,10 +9,10 @@ class ShopListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text('Vending Machine'),
-        backgroundColor: Colors.indigo,
+        title: const Text('Lihat Item (Tugas 8)'),
+        backgroundColor: Colors.grey[800],
         foregroundColor: Colors.white,
       ),
       // Masukkan drawer sebagai parameter nilai drawer dari widget Scaffold
@@ -25,15 +25,13 @@ class ShopListPage extends StatelessWidget {
             // Widget untuk menampilkan children secara vertikal
             children: [
               const Padding(
-                padding:
-                    EdgeInsets.only(top: 10, bottom: 20, right: 10, left: 10),
+                padding: EdgeInsets.only(top: 10, bottom: 20, right: 10, left: 10),
                 // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
                 child: Text(
                   'Available Item(s):', // Text yang menandakan toko
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
-                    fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),

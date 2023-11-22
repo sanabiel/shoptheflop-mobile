@@ -267,4 +267,55 @@ Membuat file shoplist_form.dart untuk mengisi data Item (name, price, amount, da
 Tampilkan setiap instance Item() dalam bentuk semacam card, implementasinya ada di file item_card.dart yang akan menampilkan detail attribute suatu item
 - Lalu, untuk mengarahkan pengguna ke halaman tersebut jika menekan tombol Lihat Item pada halaman utama atau drawer, digunakanlah Navigator.push() agar tetap bisa kembali ke page sebelumnya. Navigator.push() ditambahkan di left_drawer.dart dan button Lihat Item di file menu.dart. Navigator.push() akan mengarahkan ke ShopListPage() pada file shoplist_page.dart untuk menjalankan build
 
+# TUGAS 9
+
+## 1. Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+Ya, kita bisa melakukan pengambilan data JSON tanpa membuat model terlebih dahulu. Namun, apakah hal tersebut lebih baik daripada membuat model tergantung pada kasus penggunaan spesifiknya. Jika data JSON sederhana dan hanya memiliki beberapa field, mungkin lebih efisien untuk mengambil data tanpa membuat model. Namun, jika data JSON kompleks dan memiliki banyak field, mungkin lebih bermanfaat untuk membuat model untuk lebih baik mengatur dan mengelola data.
+
+## 2. Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+CookieRequest adalah sebuah instance yang digunakan untuk mengambil data cookie dari permintaan HTTP. Instance ini perlu dibagikan ke semua komponen di aplikasi Flutter karena cookie dapat digunakan untuk menyimpan informasi pengguna seperti preferensi, riwayat login, dan lain-lain. Dengan membagikan instance CookieRequest ke semua komponen, maka informasi pengguna dapat diakses dan digunakan di seluruh aplikasi. Hal ini dapat membantu meningkatkan pengalaman pengguna dan memudahkan pengelolaan data pengguna di aplikasi.
+
+## 3.  Jelaskan mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter.
+Untuk mengambil data dari JSON dan menampilkannya pada Flutter, ada beberapa langkah yang perlu diikuti. Pertama, buat proyek Flutter baru. Selanjutnya, buat halaman utama yang akan menampilkan data dari API yang Anda dapatkan. Kemudian, akses API menggunakan package http untuk mengambil data dari JSON. Setelah itu, gunakan ListView.builder untuk menampilkan data tersebut. Selain itu, perlu dibuat model yang sesuai dengan struktur data JSON dan mengonversi data JSON menjadi objek model menggunakan metode fromJson.
+
+## 4.  Jelaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+Untuk melakukan autentikasi dari input data akun pada Flutter ke Django, dan menampilkan menu pada Flutter setelah proses autentikasi selesai, Berikut langkah-langkahnya :
+
+### 1. Autentikasi dari Input Data Akun pada Flutter ke Django:
+- Pengguna memasukkan data akun pada aplikasi Flutter.
+- Data akun tersebut dikirim ke server Django melalui permintaan HTTP, misalnya dengan menggunakan package http pada Flutter.
+- Di sisi server Django, Anda dapat menggunakan Django REST framework untuk menangani permintaan autentikasi dan memeriksa kecocokan data akun yang diterima.
+- Jika autentikasi berhasil, server Django dapat mengirimkan respons ke Flutter untuk memberitahu bahwa autentikasi berhasil dilakukan.
+### 2. Tampilan Menu pada Flutter Setelah Proses Autentikasi:
+- Setelah autentikasi berhasil, Flutter dapat menampilkan menu atau halaman berikutnya, - misalnya dengan menggunakan Navigator untuk berpindah antar halaman.
+- Menu atau halaman yang ditampilkan dapat disesuaikan berdasarkan hasil autentikasi, misalnya menampilkan menu khusus untuk pengguna yang berhasil login.
+
+## 5. Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.
+- AppBar: Mirip dengan Navbar, terletak di bagian atas aplikasi.
+- Container: Komponen yang mengemas beberapa widget lain, dengan kemampuan untuk menyesuaikan background, margin, padding, dan lainnya.
+- Center: Digunakan untuk menempatkan widget di tengah.
+- Scaffold: Membentuk kerangka dasar untuk aplikasi Flutter dengan desain material.
+- Column: Mengatur anak-anak widget dalam satu kolom secara vertikal, ideal untuk penataan layout dalam satu kolom.
+- Material: Memberikan tampilan visual dan interaksi untuk aplikasi Flutter.
+- Text: Menampilkan teks di halaman.
+- Padding: Mengelola jarak atau ruang di sekitar widget anak.
+- TextStyle: Kustomisasi teks termasuk warna, ukuran, dan lainnya.
+- ElevatedButton: Tombol dengan efek peninggian yang responsif ketika diklik.
+- ButtonStyle: Menentukan gaya tombol.
+- ListView: Mengatur anak-anak widget dalam daftar, berguna untuk menampilkan list item.
+- InputDecoration: Mengatur dekorasi pada elemen input termasuk label, ikon, dan gaya teks.
+- TextField: Membuat bidang input teks yang dapat diubah oleh pengguna.
+
+## 6.  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial).
+- Memastikan deployment proyek tugas Django kamu telah berjalan dengan baik.
+-  Membuat halaman login pada proyek tugas Flutter.
+membuat file login.dart dan menjadikan login sebagai halaman pertama yang muncul
+- Mengintegrasikan sistem autentikasi Django dengan proyek tugas Flutter.
+install django-cors-headers, lalu membuat app authentication pada django dan menambahkan urls.py dan views.py pada app authentication
+-  Membuat model kustom sesuai dengan proyek aplikasi Django.
+membuat file item.dart yang menyimpan model dengan menggunakan quicktype
+- Membuat halaman yang berisi daftar semua item yang terdapat pada endpoint JSON di Django yang telah kamu deploy.
+gunakan AsyncSnapshot snapshot untuk iterasi setiap item.
+-  Membuat halaman detail untuk setiap item yang terdapat pada halaman daftar Item.
+membuat elevated buttons untuk redirect ke detail page yang diinginkan. Menggunakan model item. Membuat elevated button dengan tulisan back untuk kembali ke page list item
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../model/item.dart';
+import '../model/item1.dart';
 
 class ItemCard extends StatelessWidget {
   final Item item;
@@ -21,12 +21,18 @@ class ItemCard extends StatelessWidget {
               children: [
                 const Padding(padding: EdgeInsets.all(3)),
                 Text(
-                  'Nama: ${item.name}',
+                  item.name,
                   textAlign: TextAlign.left,
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
                   ),
+                ),
+                Text(
+                  'Harga: ${item.price}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: Colors.white),
                 ),
                 Text(
                   'Jumlah: ${item.amount}',

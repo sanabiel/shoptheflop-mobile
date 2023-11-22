@@ -1,7 +1,18 @@
-import 'package:shoptheflop/screens/menu.dart';
-import 'package:shoptheflop/screens/shoplist_form.dart';
 import 'package:flutter/material.dart';
-import 'package:shoptheflop/screens/shoplist_items.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:shoptheflop/screens/list_item.dart';
+import 'package:shoptheflop/screens/login.dart';
+import '../screens/shoplist_form.dart';
+import '../screens/shoplist_items.dart';
+
+class ShopItem {
+  final String name;
+  final IconData icon;
+  final Color color;
+
+  ShopItem(this.name, this.icon, this.color);
+}
 
 class ShopCard extends StatelessWidget {
   final ShopItem item;
@@ -10,41 +21,52 @@ class ShopCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor;
-
-    // Set different background colors based on the item's name
-    if (item.name == "Lihat Item") {
-      backgroundColor = const Color.fromARGB(255, 127, 76, 175);
-    } else if (item.name == "Tambah Item") {
-      backgroundColor = const Color.fromARGB(255, 33, 79, 243);
-    } else if (item.name == "Logout") {
-      backgroundColor = const Color.fromARGB(255, 54, 177, 244);
-    } else {
-      backgroundColor = Colors.indigo;
-    }
+    final request = context.watch<CookieRequest>();
 
     return Material(
-      color: backgroundColor,
+      color: item.color,
+      borderRadius: BorderRadius.circular(30),
       child: InkWell(
         // Area responsive terhadap sentuhan
-        onTap: () {
-          // Memunculkan SnackBar ketika diklik
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(
-                content: Text("Kamu telah menekan tombol ${item.name}!")));
-          if (item.name == "Tambah Item") {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ShopFormPage(),
-                ));
-          } else if (item.name == "Lihat Item") {
+        // Navigate ke route yang sesuai (tergantung jenis tombol)
+        onTap: () async {
+          if (item.name == "Lihat Item (Tugas 8)") {
             Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const ShopListPage(),
                 ));
+          } else if (item.name == "Daftar Item") {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ItemPage(),
+                ));
+          } else if (item.name == "Tambah Item") {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ShopFormPage(),
+                ));
+          } else if (item.name == "Logout") {
+            final response = await request.logout(
+                "https://ravie-hasan-tugas.pbp.cs.ui.ac.id/auth/logout/");
+                // "http://localhost:8000/auth/logout/");
+            String message = response["message"];
+            if (response['status']) {
+              String uname = response["username"];
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("$message Sampai jumpa, $uname."),
+              ));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(message),
+              ));
+            }
           }
         },
         child: Container(
